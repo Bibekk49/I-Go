@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2020",              // Modern enough to keep async/await smooth
+    "module": "commonjs",            // Because Express loves CommonJS (Node default)
+    "strict": true,                  // All strict checks on, like C# compiler vibes
+    "esModuleInterop": true,         // To play nice importing commonjs modules
+    "forceConsistentCasingInFileNames": true,  // File name case check, don’t mess it up
+    "skipLibCheck": true,            // Skip checking node_modules, speed up compile
+    "outDir": "./dist",              // Where compiled JS goes
+    "rootDir": "./src",              // Your source files here
+    "noImplicitAny": true,           // No sneaky any types, be explicit or TS will yell
+    "strictNullChecks": true,        // Null safety like C# nullable types
+    "noUnusedLocals": true,          // Catch unused vars — clean AF
+    "noUnusedParameters": true,      // Same for unused params
+    "noFallthroughCasesInSwitch": true, // Prevent switch-case WTFs
+    "resolveJsonModule": true,       // Import JSON as modules, handy sometimes
+    "sourceMap": true                // Sourcemaps for debugging your TS in Node
+  },
+  "include": ["src/**/*"],            // Only compile your source folder
+  "exclude": ["node_modules", "dist"] // Don’t touch these
+}
