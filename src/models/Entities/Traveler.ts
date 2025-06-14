@@ -1,5 +1,5 @@
 import { Schema, Types } from 'mongoose';
-import { User, GeneralUserModel } from './User';
+import { User, UserModel } from './User';
 
 // Traveler user interface
 export interface Traveler extends User {
@@ -14,7 +14,7 @@ export interface Traveler extends User {
 }
 
 // Traveler user schema (discriminator)
-export const TravelerUserModel = GeneralUserModel.discriminator<Traveler>(
+export const TravelerUserModel = UserModel.discriminator<Traveler>(
   'TravelerUser',
   new Schema<Traveler>({
     homeCountry: { type: String, required: true },

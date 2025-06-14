@@ -12,7 +12,7 @@ export interface User extends Document {
 }
 
 // General user schema
-const GeneralUserSchema = new Schema<User>(
+const UserSchema = new Schema<User>(
   {
     name: { type: String, required: true },
     email: {
@@ -29,7 +29,7 @@ const GeneralUserSchema = new Schema<User>(
 );
 
 // toJSON transformation
-GeneralUserSchema.set('toJSON', {
+UserSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
   transform: (_, ret) => {
@@ -39,4 +39,4 @@ GeneralUserSchema.set('toJSON', {
 });
 
 // General user model
-export const GeneralUserModel = model<User>('User', GeneralUserSchema);
+export const UserModel = model<User>('User', UserSchema);
