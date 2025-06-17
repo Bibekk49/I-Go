@@ -27,6 +27,6 @@ const TravelerUserSchema = new Schema<TravelerDocument>(
 );
 
 export const TravelerUserModel = UserModel.discriminator<TravelerDocument>(
-  'TravelerUser',
+  'traveller',
   TravelerUserSchema
 );

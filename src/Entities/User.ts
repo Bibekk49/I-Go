@@ -5,6 +5,7 @@ export interface User {
   passwordHash: string;
   profilePictureUrl?: string;
   bio?: string;
+  type: 'traveller' | 'guide';
   createdAt: Date;
   updatedAt: Date;
 }

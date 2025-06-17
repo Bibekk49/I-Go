@@ -1,6 +1,7 @@
 import { User } from './User';
 
 export interface Traveler extends User {
+  type: 'traveller';
   homeCountry: string;
   currentLocation: string;
   languagesSpoken: string[];
