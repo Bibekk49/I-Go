@@ -3,6 +3,8 @@ import { Schema, model, Document } from 'mongoose';
 export interface UserDocument extends Document {
   name: string;
   email: string;
+  countryCode?: string;
+  phoneNumber?: string;
   passwordHash: string;
   profilePictureUrl?: string;
   bio?: string;
@@ -20,13 +22,17 @@ const UserSchema = new Schema<UserDocument>(
       unique: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     },
+    countryCode: { type: String },
+    phoneNumber: { type: String },
     passwordHash: { type: String, required: true },
     profilePictureUrl: { type: String },
     bio: { type: String },
-    type: { type: String, required: true, enum: ['traveller', 'guide'] }, 
+    type: { type: String, required: true, enum: ['traveller', 'guide'] },
   },
   { timestamps: true, discriminatorKey: 'type' }
 );
+
+UserSchema.index({ countryCode: 1, phoneNumber: 1 }, { unique: true, sparse: true });
 
 UserSchema.set('toJSON', {
   virtuals: true,

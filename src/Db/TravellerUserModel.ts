@@ -3,7 +3,7 @@ import { UserModel, UserDocument } from './UserModel';
 
 export interface TravelerDocument extends UserDocument {
   homeCountry: string;
-  currentLocation: string;
+  currentLocation?: string;
   languagesSpoken: string[];
   interests: string[];
   friends: Types.ObjectId[];
@@ -15,7 +15,7 @@ export interface TravelerDocument extends UserDocument {
 const TravelerUserSchema = new Schema<TravelerDocument>(
   {
     homeCountry: { type: String, required: true },
-    currentLocation: { type: String, required: true },
+    currentLocation: { type: String },
     languagesSpoken: [{ type: String }],
     interests: [{ type: String }],
     friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
