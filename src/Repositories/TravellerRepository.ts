@@ -1,4 +1,4 @@
-import { TravelerUserModel } from '../MongooseModel/TravellerUserModel';
+import { TravelerUserModel } from '../Db/TravellerUserModel';
 import { Traveler } from '../Entities/Traveler';
 
 export interface ITravelerRepository {

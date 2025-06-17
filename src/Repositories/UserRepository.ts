@@ -1,4 +1,4 @@
-import { UserModel } from '../MongooseModel/UserModel';
+import { UserModel } from '../Db/UserModel';
 import { User } from '../Entities/User';
 
 export interface IUserRepository {

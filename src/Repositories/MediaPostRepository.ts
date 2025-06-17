@@ -1,4 +1,4 @@
-import { MediaPostModel } from '../MongooseModel/MediaModel';
+import { MediaPostModel } from '../Db/MediaModel';
 import { MediaPost } from '../Entities/MediaPost';
 
 export interface IMediaPostRepository {

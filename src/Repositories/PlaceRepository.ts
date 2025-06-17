@@ -1,4 +1,4 @@
-import { PlaceModel } from '../MongooseModel/PlaceModel';
+import { PlaceModel } from '../Db/PlaceModel';
 import { Place } from '../Entities/Place';
 
 export interface IPlaceRepository {

@@ -1,4 +1,4 @@
-import { ReviewModel } from '../MongooseModel/ReviewModel';
+import { ReviewModel } from '../Db/ReviewModel';
 import { Review } from '../Entities/Review';
 
 export interface IReviewRepository {
