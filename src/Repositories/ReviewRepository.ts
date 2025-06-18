@@ -37,7 +37,8 @@ export class ReviewRepository implements IReviewRepository {
         id: string,
         update: Partial<Omit<Review, 'id' | 'createdAt' | 'updatedAt'>>
     ): Promise<Review | null> {
-        const review = await ReviewModel.findByIdAndUpdate(id, update, { new: true }).exec();
+        const { userId, placeId, ...rest } = update as any;
+        const review = await ReviewModel.findByIdAndUpdate(id, rest, { new: true }).exec();
         return review ? convertReview(review) : null;
     }
 
@@ -47,7 +48,17 @@ export class ReviewRepository implements IReviewRepository {
     }
 
     async findAll(): Promise<Review[]> {
-        const reviews = await ReviewModel.find().exec();
+        const reviews = await ReviewModel.find().sort({ createdAt: -1 }).exec(); 
+        return reviews.map(convertReview);
+    }
+
+    async findByPlaceId(placeId: string): Promise<Review[]> {
+        const reviews = await ReviewModel.find({ placeId }).sort({ createdAt: -1 }).exec(); 
+        return reviews.map(convertReview);
+    }
+
+    async findByUserId(userId: string): Promise<Review[]> {
+        const reviews = await ReviewModel.find({ userId }).sort({ createdAt: -1 }).exec();
         return reviews.map(convertReview);
     }
 }

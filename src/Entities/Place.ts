@@ -5,9 +5,13 @@ export interface Place {
   description?: string;
   address?: string;
   landmark?: string;
-  coordinates: [number, number];
+  coordinates: {
+    type: 'Point';
+    coordinates: [number, number];
+  };
   photos?: string[];
   videos?: string[];
   createdAt: Date;
+  createdById: string;
   updatedAt: Date;
 }

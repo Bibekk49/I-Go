@@ -6,11 +6,15 @@ export interface PlaceDocument extends Document {
   description?: string;
   address?: string;
   landmark?: string;
-  coordinates: [number, number];
+  coordinates: {
+    type: 'Point';
+    coordinates: [number, number];
+  };
   photos?: string[];
   videos?: string[];
   createdAt: Date;
   updatedAt: Date;
+  createdById: string;
 }
 
 const PlaceSchema = new Schema<PlaceDocument>(
@@ -20,20 +24,27 @@ const PlaceSchema = new Schema<PlaceDocument>(
     description: { type: String },
     address: { type: String },
     landmark: { type: String },
-    coordinates: { type: [Number], required: true, unique: true },
+    coordinates: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        default: 'Point',
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
+    },
     photos: [{ type: String }],
     videos: [{ type: String }],
+    createdById: { type: String, required: true },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-PlaceSchema.set('toJSON', {
-  virtuals: true,
-  versionKey: false,
-  transform: (_, ret) => {
-    ret.id = ret._id.toString();
-    delete ret._id;
-  },
-});
+PlaceSchema.index({ coordinates: '2dsphere' });
 
 export const PlaceModel = model<PlaceDocument>('Place', PlaceSchema);
